@@ -39,10 +39,10 @@ def daum_breaking_return_list(max_length):
                 pass
 
             base = i.find("a")
-            img = base.find("img")
-
-            title = img.text
             link = base['href']
+
+            article = base.find("img")
+            title = article.text
 
             if(link not in old_links):
                 if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
