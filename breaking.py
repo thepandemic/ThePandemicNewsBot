@@ -5,19 +5,56 @@ import time
 import telegram
 
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
+
+daum_news_amount = 10
+naver_news_amount = 10
+
 lists = []
 old_links = []
 
+#max_length 최대길이 제한
 def returns(url):
     req = requests.get(url)
     bs = bs4.BeautifulSoup(req.content, "html.parser")
     return bs
 
-def return_list():
+def daum_return_list(max_length):
+    bs = returns("https://search.daum.net/search?w=news&sort=recency&q=%EC%BD%94%EB%A1%9C%EB%82%98&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
+    td = bs.find("div", {"class":"coll_cont"})
+    li = td.findAll("li")
+    length = 0
+    for i in li:
+        try:
+            i.find("div", {"class":"wrap_thumb"}).decompose()
+        except AttributeError:
+            pass
+
+        base = i.find("a")
+
+        title = base.text
+        link = base['href']
+        if(link not in old_links):
+            if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
+                if(length == max_length):
+                    return lists
+                else:
+                    lists.append([title, link])
+                    old_links.append(link)
+                    length+=1
+                    #print(length)
+                    
+
+    if(len(lists) != 0):
+        return lists
+    else:
+        raise TypeError
+
+def naver_return_list(max_length):
     bs = returns("https://news.naver.com/main/list.nhn?mode=LSD&mid=sec&sid1=001")
     td = bs.find("td", {"class":"content"})
 
     li = td.findAll("li")
+    length = 0
     for i in li:
         try:
             i.find("dt", {"class":"photo"}).decompose()
@@ -29,23 +66,39 @@ def return_list():
         title = base.text
         link = base['href']
         if(link not in old_links):
-            if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
-                print(title, link)
-                lists.append([title, link])
-                old_links.append(link)
+            if("코로나" in title or "봉쇄" in title or "확진" in title or "감염" in title):
+                if(length == max_length):
+                    return lists
+                else:
+                    lists.append([title, link])
+                    old_links.append(link)
+                    length+=1
 
     if(len(lists) != 0):
         return lists
     else:
         raise TypeError
 
+
 def sendBots():
     try:
-        lists = return_list()
+        lists = daum_return_list(daum_news_amount)
+        print(lists)
         for i in lists:
-            bot.sendMessage(CHAT_ID, "{}\n{}".format(i[0], i[1]))
+            #bot.sendMessage로 대체
+            #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
             #print("new ! \n{}\n\n{}".format(i[0], i[1]))
-            time.sleep(1.5)
+            time.sleep(1)
+    except TypeError:
+        print("Error")
+
+    try:
+        lists = naver_return_list(naver_news_amount)
+        for i in lists:
+            #bot.sendMessage로 대체
+            #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
+            #print("new ! \n{}\n\n{}".format(i[0], i[1]))
+            time.sleep(1)
     except TypeError:
         print("Error")
 
