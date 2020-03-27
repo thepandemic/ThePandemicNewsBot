@@ -39,7 +39,7 @@ def daum_return_list(max_length):
 
             title = base.text
             link = base['href']
-            
+
             if(link not in old_links):
                 if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
                     if(length == max_length):
@@ -50,11 +50,10 @@ def daum_return_list(max_length):
                         length+=1
                         #print(length)
 
-
-            if(len(lists) != 0):
-                return lists
-            else:
-                raise TypeError
+        if(len(lists) != 0):
+            return lists
+        else:
+            raise TypeError
 
 def naver_return_list(max_length):
     bs = returns("https://news.naver.com/main/list.nhn?mode=LSD&mid=sec&sid1=001")
@@ -81,10 +80,10 @@ def naver_return_list(max_length):
                     old_links.append(link)
                     length+=1
 
-        if(len(lists) != 0):
-            return lists
-        else:
-            raise TypeError
+    if(len(lists) != 0):
+        return lists
+    else:
+        raise TypeError
 
 
 def sendBots():
@@ -93,7 +92,7 @@ def sendBots():
         print(lists)
         for i in lists:
             #bot.sendMessage로 대체
-            #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
+            bot.sendMessage(CHAT_ID, "{}\n{}".format(i[0], i[1]))
             #print("new ! \n{}\n\n{}".format(i[0], i[1]))
             time.sleep(1)
 
@@ -103,10 +102,10 @@ def sendBots():
     try:
         lists = naver_return_list(naver_news_amount)
         for i in lists:
-        #bot.sendMessage로 대체
-        #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
-        #print("new ! \n{}\n\n{}".format(i[0], i[1]))
-        time.sleep(1)
+            #bot.sendMessage로 대체
+            bot.sendMessage(CHAT_ID, "{}\n\n{}".format(i[0], i[1]))
+            #print("new ! \n{}\n\n{}".format(i[0], i[1]))
+            time.sleep(1)
 
     except TypeError:
         print("Error")
