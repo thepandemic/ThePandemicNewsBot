@@ -46,7 +46,7 @@ def send_links():
         for link in new_links:
             bot.sendMessage(chat_id='TELEGRAM_TOKEN', text=link)
     else:
-        bot.sendMessage(chat_id='TELEGRAM_TOKEN', text='새로운 뉴스 없음')
+        bot.sendMessage(chat_id='TELEGRAM_TOKEN', text='아직 새로운 뉴스가 없습니다.')
     old_links += new_links.copy()
     old_links = list(set(old_links))
 
