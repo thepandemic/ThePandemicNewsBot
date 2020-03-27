@@ -70,6 +70,7 @@ def daum_return_list(max_length):
         bs = returns("https://search.daum.net/search?w=news&sort=recency&q={keyword[j]}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
         td = bs.find("div", {"id":"newsResultUL"})
         li = td.findAll("li")
+        body = li.findAll("p", {"class":"desc"})
         length = 0
 
         for i in li:
@@ -79,19 +80,20 @@ def daum_return_list(max_length):
                 pass
 
             base = i.find("a")
-
             title = base.text
+            desc = body.text
             link = base['href']
 
             if(link not in old_links):
-                if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
-                    if(length == max_length):
-                        return lists
-                    else:
-                        lists.append([title, link])
-                        old_links.append(link)
-                        length+=1
-                        #print(length)
+                if("코로나" in desc or "코비드" in desc or "봉쇄" in desc or "확진" in desc or "감염" in desc or "속보" in desc):
+                    if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
+                        if(length == max_length):
+                            return lists
+                        else:
+                            lists.append([title, link])
+                            old_links.append(link)
+                            length+=1
+                            #print(length)
 
         if(len(lists) != 0):
             return lists
