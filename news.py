@@ -63,13 +63,13 @@ for i in range(10):
     new_links = naver_extract_links(old_links)
     old_links += new_links.copy()
     old_links = list(set(old_links))
-    news(new_links{i})
+    news(new_links, i)
 
 for i in range(10):
     new_links = daum_extract_links(old_links)
     old_links += new_links.copy()
     old_links = list(set(old_links))
-    news(new_links{i})
+    news(new_links, i)
 """
 ===보낼 링크===
  ['https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=008&aid=0004349743', 'http://it.chosun.com/site/data/html_dir/2020/01/31/2020013103216.html', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=031&aid=0000523810', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=102&oid=001&aid=0011371561', 'http://www.fintechpost.co.kr/news/articleView.html?idxno=100097'] 
