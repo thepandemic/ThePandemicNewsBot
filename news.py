@@ -29,7 +29,7 @@ def naver_extract_links(old_links=[]):
 
     titles = []
     for news_title in news_list[:10]:
-        title = news['title']
+        title = news_title['title']
         titles.innerHTML()
 
     naver_new_links=[]
@@ -62,7 +62,7 @@ def daum_extract_links(old_links=[]):
 
     titles = []
     for news_title in news_list[:10]:
-        title = news['title']
+        title = news_title['title']
         titles.innerHTML()
 
     daum_new_links=[]
