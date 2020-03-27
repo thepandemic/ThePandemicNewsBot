@@ -29,7 +29,7 @@ def daum_breaking_return_list(max_length):
     for j in range(x):
         bs = returns("https://news.daum.net/")
         td = bs.find("div", {"id":"kakaoContent"})
-        li = td.findAll("li")
+        strong = td.findAll("strong")
         length = 0
 
         for i in strong:
