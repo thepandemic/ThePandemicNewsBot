@@ -94,7 +94,7 @@ def sendBots():
         for i in lists:
             #bot.sendMessage로 대체
             bot.sendMessage(CHAT_ID, "{}\n{}".format(i[0], i[1]))
-            print("{}\n{}".format(i[0], i[1]))
+            #print("new ! \n{}\n\n{}".format(i[0], i[1]))
             time.sleep(1)
 
     except TypeError:
@@ -105,7 +105,7 @@ def sendBots():
         for i in lists:
             #bot.sendMessage로 대체
             bot.sendMessage(CHAT_ID, "{}\n\n{}".format(i[0], i[1]))
-            print("{}\n{}".format(i[0], i[1]))
+            #print("new ! \n{}\n\n{}".format(i[0], i[1]))
             time.sleep(1)
 
     except TypeError:
