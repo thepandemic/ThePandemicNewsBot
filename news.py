@@ -9,7 +9,8 @@ bot = telegram.Bot(token=TELEGRAM_TOKEN)
 # 서치 키워드
 search_word = '코로나'
 # 기존에 보냈던 링크를 담아둘 리스트
-old_links = []
+naver_old_links = []
+daum_old_links = []
 
 # 스크래핑 함수 
 def naver_extract_links(old_links=[]):
@@ -25,13 +26,24 @@ def naver_extract_links(old_links=[]):
     for news in news_list[:10]:
         link = news['href']
         links.append(link)
-    
+
+    titles = []
+    for news_title in news_list[:10]:
+        title = news['title']
+        titles.innerHTML()
+
     naver_new_links=[]
     for link in links:
         if link not in old_links:
             naver_new_links.append(link)
-    
+
+    naver_new_titles=[]
+    for title in titles:
+        if title not in old_links:
+            naver_new_titles.innerHTML(link)
+
     return naver_new_links
+    return naver_new_titles
 
 # 스크래핑 함수 
 def daum_extract_links(old_links=[]):
@@ -47,13 +59,24 @@ def daum_extract_links(old_links=[]):
     for news in news_list[:10]:
         link = news['href']
         links.append(link)
-    
+
+    titles = []
+    for news_title in news_list[:10]:
+        title = news['title']
+        titles.innerHTML()
+
     daum_new_links=[]
     for link in links:
         if link not in old_links:
             daum_new_links.append(link)
+
+    daum_new_titles=[]
+    for title in titles:
+        if title not in old_links:
+            daum_new_titles.innerHTML(link)
     
     return daum_new_links
+    return daum_new_titles
 
 
 # 이전 링크를 매개변수로 받아서, 비교 후 새로운 링크만 출력
@@ -61,15 +84,25 @@ def daum_extract_links(old_links=[]):
 # 새로운 링크가 없다면 빈 리스트 반환
 for i in range(10):
     naver_new_links = naver_extract_links(old_links)
-    old_links += naver_new_links.copy()
-    old_links = list(set(old_links))
-    news(naver_new_links, i)
+    naver_old_links += naver_new_links.copy()
+    naver_old_links = list(set(old_links))
+
+    naver_new_titles = naver_extract_links(naver_old_links)
+    naver_old_titles += naver_new_titles.copy()
+    naver_old_titles = list(set(naver_old_links))
+
+    news(naver_new_titles=[i],'\n\n',naver_new_links=[i])
 
 for i in range(10):
-    daum_new_links = daum_extract_links(old_links)
-    old_links += daum_new_links.copy()
-    old_links = list(set(old_links))
-    news(daum_new_links, i)
+    daum_new_links = daum_extract_links(daum_old_links)
+    daum_new_links += daum_new_links.copy()
+    daum_new_links = list(set(daum_old_links))
+
+    daum_new_titles = daum_extract_links(daum_old_links)
+    daum_old_titles += daum_new_titles.copy()
+    daum_old_titles = list(set(daum_old_links))
+
+    news(daum_new_titles=[i],'\n\n',daum_new_links=[i])
 """
 ===보낼 링크===
  ['https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=008&aid=0004349743', 'http://it.chosun.com/site/data/html_dir/2020/01/31/2020013103216.html', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=031&aid=0000523810', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=102&oid=001&aid=0011371561', 'http://www.fintechpost.co.kr/news/articleView.html?idxno=100097'] 
