@@ -91,7 +91,7 @@ for i in range(10):
     naver_old_titles += naver_new_titles.copy()
     naver_old_titles = list(set(naver_old_links))
 
-    naver_news = naver_new_titles=[i] + '\n\n' + naver_new_links=[i]
+    naver_news = naver_new_titles[i] + '\n\n' + naver_new_links[i]
     news(naver_news)
 
 for i in range(10):
@@ -103,7 +103,7 @@ for i in range(10):
     daum_old_titles += daum_new_titles.copy()
     daum_old_titles = list(set(daum_old_links))
     
-    daum_news = daum_new_titles=[i] + '\n\n' + daum_new_links=[i]
+    daum_news = daum_new_titles[i] + '\n\n' + daum_new_links[i]
     news(daum_news)
 """
 ===보낼 링크===
