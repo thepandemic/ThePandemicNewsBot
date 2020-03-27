@@ -26,12 +26,12 @@ def naver_extract_links(old_links=[]):
         link = news['href']
         links.append(link)
     
-    new_links=[]
+    naver_new_links=[]
     for link in links:
         if link not in old_links:
-            new_links.append(link)
+            naver_new_links.append(link)
     
-    return new_links
+    return naver_new_links
 
 # 스크래핑 함수 
 def daum_extract_links(old_links=[]):
@@ -48,28 +48,28 @@ def daum_extract_links(old_links=[]):
         link = news['href']
         links.append(link)
     
-    new_links=[]
+    daum_new_links=[]
     for link in links:
         if link not in old_links:
-            new_links.append(link)
+            daum_new_links.append(link)
     
-    return new_links
+    return daum_new_links
 
 
 # 이전 링크를 매개변수로 받아서, 비교 후 새로운 링크만 출력
 # 차후 이 부분을 메시지 전송 코드로 변경하고 매시간 동작하도록 설정
 # 새로운 링크가 없다면 빈 리스트 반환
 for i in range(10):
-    new_links = naver_extract_links(old_links)
-    old_links += new_links.copy()
+    naver_new_links = naver_extract_links(old_links)
+    old_links += naver_new_links.copy()
     old_links = list(set(old_links))
-    news(new_links, i)
+    news(naver_new_links, i)
 
 for i in range(10):
-    new_links = daum_extract_links(old_links)
-    old_links += new_links.copy()
+    daum_new_links = daum_extract_links(old_links)
+    old_links += daum_new_links.copy()
     old_links = list(set(old_links))
-    news(new_links, i)
+    news(daum_new_links, i)
 """
 ===보낼 링크===
  ['https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=008&aid=0004349743', 'http://it.chosun.com/site/data/html_dir/2020/01/31/2020013103216.html', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=031&aid=0000523810', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=102&oid=001&aid=0011371561', 'http://www.fintechpost.co.kr/news/articleView.html?idxno=100097'] 
