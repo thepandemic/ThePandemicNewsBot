@@ -1,6 +1,7 @@
 import requests as rq
 from bs4 import BeautifulSoup
 from noti import send
+from news import send
 from table import print_table
 
 def template(data):
