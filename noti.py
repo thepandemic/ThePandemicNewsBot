@@ -3,7 +3,7 @@ import TELEGRAM_TOKEN, CHAT_ID
 import requests as rq
 import telegram 
 
-bot = telegram.Bot(token=1014840884:AAHRl3QtKjOjTAz9BIgPV-4XWXA95Y5s3bE)
+bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
 def send(t):
-  bot.sendMessage(1146016071, t, parse_mode=telegram.ParseMode.HTML)
+  bot.sendMessage(CHAT_ID, t, parse_mode=telegram.ParseMode.HTML)
