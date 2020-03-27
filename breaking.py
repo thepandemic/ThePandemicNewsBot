@@ -68,7 +68,7 @@ def daum_return_list(max_length):
 
     for j in range(x):
         bs = returns("https://search.daum.net/search?w=news&sort=recency&q={keyword[j]}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
-        td = bs.find("div", {"id":"newsResultUL"})
+        td = bs.find("ul", {"id":"newsResultUL"})
         li = td.findAll("li")
         body = li.findAll("p", {"class":"desc"})
         length = 0
