@@ -11,6 +11,7 @@ naver_news_amount = 10
 
 lists = []
 old_links = []
+keyword = ["코로나", "코비드", "봉쇄", "확진", "감염", "속보"]
 
 #max_length 최대길이 제한
 def returns(url):
@@ -19,35 +20,37 @@ def returns(url):
     return bs
 
 def daum_return_list(max_length):
-    bs = returns("https://search.daum.net/search?w=news&sort=recency&q=%EC%BD%94%EB%A1%9C%EB%82%98&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
-    td = bs.find("div", {"class":"coll_cont"})
-    li = td.findAll("li")
-    length = 0
-    for i in li:
-        try:
-            i.find("div", {"class":"wrap_thumb"}).decompose()
-        except AttributeError:
-            pass
 
-        base = i.find("a")
+    for i in keyword.len()
+        bs = returns("https://search.daum.net/search?w=news&sort=recency&q={keyword[i]}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
+        td = bs.find("div", {"class":"coll_cont"})
+        li = td.findAll("li")
+        length = 0
+        for i in li:
+            try:
+                i.find("div", {"class":"wrap_thumb"}).decompose()
+            except AttributeError:
+                pass
 
-        title = base.text
-        link = base['href']
-        if(link not in old_links):
-            if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
-                if(length == max_length):
-                    return lists
-                else:
-                    lists.append([title, link])
-                    old_links.append(link)
-                    length+=1
-                    #print(length)
-                    
+            base = i.find("a")
 
-    if(len(lists) != 0):
-        return lists
-    else:
-        raise TypeError
+            title = base.text
+            link = base['href']
+            if(link not in old_links):
+                if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
+                    if(length == max_length):
+                        return lists
+                    else:
+                        lists.append([title, link])
+                        old_links.append(link)
+                        length+=1
+                        #print(length)
+                        
+
+        if(len(lists) != 0):
+            return lists
+        else:
+            raise TypeError
 
 def naver_return_list(max_length):
     bs = returns("https://news.naver.com/main/list.nhn?mode=LSD&mid=sec&sid1=001")
