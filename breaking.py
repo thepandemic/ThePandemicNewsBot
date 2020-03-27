@@ -39,6 +39,7 @@ def daum_return_list(max_length):
 
             title = base.text
             link = base['href']
+            
             if(link not in old_links):
                 if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
                     if(length == max_length):
@@ -95,7 +96,7 @@ def sendBots():
             #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
             #print("new ! \n{}\n\n{}".format(i[0], i[1]))
             time.sleep(1)
-            
+
     except TypeError:
         print("Error")
 
