@@ -23,13 +23,13 @@ def daum_return_list(max_length):
 
     x = len(keyword)
 
-    for i in range(x):
+    for j in range(x):
         bs = returns("https://search.daum.net/search?w=news&sort=recency&q={keyword[i]}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
         td = bs.find("div", {"class":"coll_cont"})
         li = td.findAll("li")
         length = 0
 
-        for j in li:
+        for i in li:
             try:
                 i.find("div", {"class":"wrap_thumb"}).decompose()
             except AttributeError:
