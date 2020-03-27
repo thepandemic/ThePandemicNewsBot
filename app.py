@@ -1,5 +1,6 @@
 import requests as rq
 from bs4 import BeautifulSoup
+from noti import send
 from table import print_table
 
 def template(data):
@@ -43,3 +44,16 @@ for row in table_rows[1:]:
 
 data = template(result)
 print(data)
+
+helper = '''
+
+Column Description:
+- city: 도시
+- CheckInc: 확진자증감
+- Confirm: 확진자
+- Dead: 사망자
+- Incidence: 발생률
+- Inspec: 검사자수
+'''
+
+send(data + helper)
