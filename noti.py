@@ -1,5 +1,4 @@
-from config
-import TELEGRAM_TOKEN, CHAT_ID
+from config import TELEGRAM_TOKEN, CHAT_ID
 import requests as rq
 import telegram 
 
