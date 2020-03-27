@@ -2,7 +2,7 @@ from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
 import bs4
 import time
-import telepot
+import telegram
 
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
 lists = []
