@@ -17,69 +17,69 @@ daum_old_title = []
 
 # 스크래핑 함수 
 def naver_extract_links(old_links=[]):
-    url = f'http://search.naver.com/search.naver?where=news&sm=tab_jum&query={search_word}&nso=p%3Aall%2Cso%3Add'
-    req = requests.get(url)
-    html = req.text
-    soup = BeautifulSoup(html, 'html.parser')
+    naver_url = f'http://search.naver.com/search.naver?where=news&sm=tab_jum&query={search_word}&nso=p%3Aall%2Cso%3Add'
+    naver_req = requests.get(naver_url)
+    naver_html = naver_req.text
+    naver_soup = BeautifulSoup(naver_html, 'html.parser')
 
-    search_result = soup.select_one('.type01')
-    news_list = search_result.select('li a')
+    naver_search_result = naver_soup.select_one('.type01')
+    naver_news_list = naver_search_result.select('li a')
 
-    links = []
-    for news in news_list[:10]:
-        link = news['href']
-        links.append(link)
+    naver_links = []
+    for naver_news in naver_news_list[:10]:
+        naver_link = naver_news['href']
+        naver_links.append(naver_link)
 
     naver_new_links=[]
-    for link in links:
-        if link not in naver_old_links:
-            naver_new_links.append(link)
+    for naver_link in naver_links:
+        if naver_link not in naver_old_links:
+            naver_new_links.append(naver_link)
 
-    titles = []
-    for news_title in news_list[:10]:
-        title = news_title['title']
-        titles.append(title)
+    naver_titles = []
+    for naver_news_title in naver_news_list[:10]:
+        naver_title = naver_news_title['title']
+        naver_titles.append(naver_title)
 
     naver_new_titles=[]
-    for title in titles:
-        if title not in naver_old_links:
-            naver_new_titles.append(title)
+    for naver_title in naver_titles:
+        if naver_title not in naver_old_links:
+            naver_new_titles.append(naver_title)
 
     return naver_new_links
- #   return naver_new_titles
+    return naver_new_titles
 
 # 스크래핑 함수 
 def daum_extract_links(old_links=[]):
-    url = f'http://search.daum.net/search?w=news&sort=recency&q={search_word}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=20200326210541&ed=20200327210541&period=d'
-    req = requests.get(url)
-    html = req.text
-    soup = BeautifulSoup(html, 'html.parser')
+    daum_url = f'http://search.daum.net/search?w=news&sort=recency&q={search_word}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=20200326210541&ed=20200327210541&period=d'
+    daum_req = requests.get(daum_url)
+    daum_html = daum_req.text
+    daum_soup = BeautifulSoup(daum_html, 'html.parser')
 
-    search_result = soup.select_one('#newsResultUL')
-    news_list = search_result.select('li a')
+    daum_search_result = daum_soup.select_one('#newsResultUL')
+    daum_news_list = daum_search_result.select('li a')
 
-    links = []
-    for news in news_list[:10]:
-        link = news['href']
-        links.append(link)
+    daum_links = []
+    for daum_news in daum_news_list[:10]:
+        daum_link = daum_news['href']
+        daum_links.append(daum_link)
 
     daum_new_links=[]
-    for link in links:
-        if link not in daum_old_links:
-            daum_new_links.append(link)
+    for daum_link in daum_links:
+        if daum_link not in daum_old_links:
+            daum_new_links.append(daum_link)
 
-    titles = []
-    for news_title in news_list[:10]:
-       title = news_title['title']
-        titles.append(title)
+    daum_titles = []
+    for daum_news_title in daum_news_list[:10]:
+       daum_title = daum_news_title['title']
+        daum_titles.append(daum_title)
 
     daum_new_titles=[]
-    for title in titles:
-        if title not in daum_old_links:
-            daum_new_titles.append(title)
+    for daum_title in daum_titles:
+        if daum_title not in daum_old_links:
+            daum_new_titles.append(daum_title)
     
     return daum_new_links
-#    return daum_new_titles
+    return daum_new_titles
 
 
 # 이전 링크를 매개변수로 받아서, 비교 후 새로운 링크만 출력
