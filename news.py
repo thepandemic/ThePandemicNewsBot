@@ -3,7 +3,7 @@ from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
 from bs4 import BeautifulSoup
 import telegram
-from apscheduler.schedulers.blocking import BlockingScheduler
+#from apscheduler.schedulers.blocking import BlockingScheduler
 
 # 검색 키워드
 search_word = '코로나'
