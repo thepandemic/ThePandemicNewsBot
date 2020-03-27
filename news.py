@@ -86,7 +86,6 @@ def daum_extract_links(old_links=[]):
 # 차후 이 부분을 메시지 전송 코드로 변경하고 매시간 동작하도록 설정
 # 새로운 링크가 없다면 빈 리스트 반환
 for i in range(10):
-    i = 1
     naver_new_links = naver_extract_links(naver_old_links)
     naver_old_links += naver_new_links.copy()
     naver_old_links = list(set(naver_old_links))
@@ -96,11 +95,9 @@ for i in range(10):
 #    naver_old_titles = list(set(naver_old_links))
 
 #    naver_news = naver_new_titles[i] + '\n\n' + naver_new_links[i]
-    news(naver_new_links[i])
-    i += 1
+    news(naver_new_links)
 
 for i in range(10):
-    i = 1
     daum_new_links = daum_extract_links(daum_old_links)
     daum_new_links += daum_new_links.copy()
     daum_new_links = list(set(daum_old_links))
@@ -110,8 +107,7 @@ for i in range(10):
 #    daum_old_titles = list(set(daum_old_links))
     
 #    daum_news = daum_new_titles[i] + '\n\n' + daum_new_links[i]
-    news(daum_new_links[i])
-    i += 1
+    news(daum_new_links)
 
 """
 ===보낼 링크===
