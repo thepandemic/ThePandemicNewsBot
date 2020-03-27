@@ -155,7 +155,7 @@ def naver_return_list(max_length):
 
 def sendBots():
     try:
-        lists = daum_breaking_return_list(daum_news_amount)
+        lists = daum_breaking_return_list(daum_breaking_news_amount)
         print(lists)
         for i in lists:
             #bot.sendMessage로 대체
@@ -179,7 +179,7 @@ def sendBots():
         print("Error")
 
     try:
-        lists = naver_breaking_return_list(naver_news_amount)
+        lists = naver_breaking_return_list(naver_breaking_news_amount)
         for i in lists:
             #bot.sendMessage로 대체
             bot.sendMessage(CHAT_ID, "{}\n\n{}".format(i[0], i[1]))
