@@ -1,4 +1,5 @@
 from config import TELEGRAM_TOKEN, CHAT_ID
+from noti import send
 import requests as rq
 import telegram 
 
