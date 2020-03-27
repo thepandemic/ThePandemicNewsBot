@@ -35,15 +35,15 @@ def naver_extract_links(old_links=[]):
         if naver_link not in naver_old_links:
            naver_new_links.append(naver_link)
 
-    naver_titles = []
-    for naver_news_title in naver_news_list[:10]:
-        naver_title = naver_news_title['title']
-        naver_titles.append(naver_title)
+#    naver_titles = []
+#    for naver_news_title in naver_news_list[:10]:
+#        naver_title = naver_news_title['title']
+#        naver_titles.append(naver_title)
 
-    naver_new_titles=[]
-    for naver_title in naver_titles:
-        if naver_title not in naver_old_links:
-           naver_new_titles.append(naver_title)
+#    naver_new_titles=[]
+#    for naver_title in naver_titles:
+#        if naver_title not in naver_old_links:
+#           naver_new_titles.append(naver_title)
 
     return naver_new_links, naver_new_titles
 
@@ -67,15 +67,15 @@ def daum_extract_links(old_links=[]):
         if daum_link not in daum_old_links:
            daum_new_links.append(daum_link)
 
-    daum_titles = []
-    for daum_news_title in daum_news_list[:10]:
-        daum_title = daum_news_title['title']
-        daum_titles.append(daum_title)
+#    daum_titles = []
+#    for daum_news_title in daum_news_list[:10]:
+#        daum_title = daum_news_title['title']
+#        daum_titles.append(daum_title)
 
-    daum_new_titles=[]
-    for daum_title in daum_titles:
-        if daum_title not in daum_old_links:
-           daum_new_titles.append(daum_title)
+#    daum_new_titles=[]
+#   for daum_title in daum_titles:
+#        if daum_title not in daum_old_links:
+#           daum_new_titles.append(daum_title)
     
     return daum_new_links, daum_new_titles
 
@@ -84,25 +84,25 @@ def daum_extract_links(old_links=[]):
 # 차후 이 부분을 메시지 전송 코드로 변경하고 매시간 동작하도록 설정
 # 새로운 링크가 없다면 빈 리스트 반환
 for i in range(10):
-    naver_new_links, naver_new_titles = naver_extract_links(naver_old_links)
-
+    naver_new_links = naver_extract_links(naver_old_links)
     naver_old_links += naver_new_links.copy()
     naver_old_links = list(set(naver_old_links))
 
-    naver_old_titles += naver_new_titles.copy()
-    naver_old_titles = list(set(naver_old_links))
+#    naver_new_titles = naver_extract_links(naver_old_links)
+#    naver_old_titles += naver_new_titles.copy()
+#    naver_old_titles = list(set(naver_old_links))
 
     naver_news = naver_new_titles[i] + '\n\n' + naver_new_links[i]
     news(naver_news)
 
 for i in range(10):
     daum_new_links, daum_new_titles = daum_extract_links(daum_old_links)
-    
     daum_new_links += daum_new_links.copy()
     daum_new_links = list(set(daum_old_links))
 
-    daum_old_titles += daum_new_titles.copy()
-    daum_old_titles = list(set(daum_old_links))
+#    daum_new_titles = naver_extract_links(daum_old_links)
+#    daum_old_titles += daum_new_titles.copy()
+#    daum_old_titles = list(set(daum_old_links))
     
     daum_news = daum_new_titles[i] + '\n\n' + daum_new_links[i]
     news(daum_news)
