@@ -43,8 +43,8 @@ def sendBots():
     try:
         lists = return_list()
         for i in lists:
-            bot.sendMessage(CHAT_ID, "new ! \n{}\n\n{}".format(i[0], i[1]))
-            print("new ! \n{}\n\n{}".format(i[0], i[1]))
+            bot.sendMessage(CHAT_ID, "\n\n{}".format(i[0], i[1]))
+            #print("new ! \n{}\n\n{}".format(i[0], i[1]))
             time.sleep(1.5)
     except TypeError:
         print("Error")
