@@ -1,6 +1,6 @@
 # 라이브러리 불러오기
 from config import TELEGRAM_TOKEN, CHAT_ID
-from noti import send
+from noti import news
 import requests
 from bs4 import BeautifulSoup
 import telegram
