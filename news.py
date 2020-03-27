@@ -45,7 +45,8 @@ def naver_extract_links(old_links=[]):
 #        if naver_title not in naver_old_links:
 #           naver_new_titles.append(naver_title)
 
-    return naver_new_links, naver_new_titles
+    return naver_new_links
+#   return naver_new_titles
 
 # 스크래핑 함수 
 def daum_extract_links(old_links=[]):
@@ -77,7 +78,8 @@ def daum_extract_links(old_links=[]):
 #        if daum_title not in daum_old_links:
 #           daum_new_titles.append(daum_title)
     
-    return daum_new_links, daum_new_titles
+    return daum_new_links
+#    return daum_new_titles
 
 
 # 이전 링크를 매개변수로 받아서, 비교 후 새로운 링크만 출력
