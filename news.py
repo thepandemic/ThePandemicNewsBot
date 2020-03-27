@@ -1,8 +1,8 @@
 # 라이브러리 불러오기
 from config import TELEGRAM_TOKEN, CHAT_ID
+from noti import send
 import requests
 from bs4 import BeautifulSoup
-import requests as rq
 import telegram
 
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
@@ -38,7 +38,7 @@ def extract_links(old_links=[]):
 # 새로운 링크가 없다면 빈 리스트 반환
 for i in range(3):
     new_links = extract_links(old_links)
-    bot.sendMessage(CHAT_ID, new_links)
+    news(new_links)
     old_links += new_links.copy()
     old_links = list(set(old_links))
     
