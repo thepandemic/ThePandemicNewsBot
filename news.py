@@ -2,8 +2,10 @@
 from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
 from bs4 import BeautifulSoup
+import requests as rq
 import telegram
 
+bot = telegram.Bot(token=TELEGRAM_TOKEN)
 # 서치 키워드
 search_word = '코로나'
 # 기존에 보냈던 링크를 담아둘 리스트
@@ -36,7 +38,7 @@ def extract_links(old_links=[]):
 # 새로운 링크가 없다면 빈 리스트 반환
 for i in range(3):
     new_links = extract_links(old_links)
-    send(new_links)
+    bot.sendMessage(CHAT_ID, new_links)
     old_links += new_links.copy()
     old_links = list(set(old_links))
     
