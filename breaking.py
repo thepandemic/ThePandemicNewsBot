@@ -21,12 +21,15 @@ def returns(url):
 
 def daum_return_list(max_length):
 
-    for i in range(len(keyword)):
+    x = len(keyword)
+
+    for i in range(x):
         bs = returns("https://search.daum.net/search?w=news&sort=recency&q={keyword[i]}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
         td = bs.find("div", {"class":"coll_cont"})
         li = td.findAll("li")
         length = 0
-        for i in li:
+
+        for j in li:
             try:
                 i.find("div", {"class":"wrap_thumb"}).decompose()
             except AttributeError:
@@ -45,12 +48,12 @@ def daum_return_list(max_length):
                         old_links.append(link)
                         length+=1
                         #print(length)
-                        
 
-        if(len(lists) != 0):
-            return lists
-        else:
-            raise TypeError
+
+            if(len(lists) != 0):
+                return lists
+            else:
+                raise TypeError
 
 def naver_return_list(max_length):
     bs = returns("https://news.naver.com/main/list.nhn?mode=LSD&mid=sec&sid1=001")
@@ -77,10 +80,10 @@ def naver_return_list(max_length):
                     old_links.append(link)
                     length+=1
 
-    if(len(lists) != 0):
-        return lists
-    else:
-        raise TypeError
+        if(len(lists) != 0):
+            return lists
+        else:
+            raise TypeError
 
 
 def sendBots():
@@ -88,21 +91,21 @@ def sendBots():
         lists = daum_return_list(daum_news_amount)
         print(lists)
         for i in lists:
-            #bot.sendMessage로 대체
-            #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
-            #print("new ! \n{}\n\n{}".format(i[0], i[1]))
+        #bot.sendMessage로 대체
+        #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
+        #print("new ! \n{}\n\n{}".format(i[0], i[1]))
             time.sleep(1)
-    except TypeError:
-        print("Error")
+            except TypeError:
+            print("Error")
 
     try:
         lists = naver_return_list(naver_news_amount)
         for i in lists:
-            #bot.sendMessage로 대체
-            #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
-            #print("new ! \n{}\n\n{}".format(i[0], i[1]))
-            time.sleep(1)
+    #bot.sendMessage로 대체
+    #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
+    #print("new ! \n{}\n\n{}".format(i[0], i[1]))
+    time.sleep(1)
     except TypeError:
-        print("Error")
+    print("Error")
 
 sendBots()
