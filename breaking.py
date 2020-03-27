@@ -95,17 +95,19 @@ def sendBots():
             #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
             #print("new ! \n{}\n\n{}".format(i[0], i[1]))
             time.sleep(1)
+            
     except TypeError:
         print("Error")
 
     try:
         lists = naver_return_list(naver_news_amount)
         for i in lists:
-    #bot.sendMessage로 대체
-    #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
-    #print("new ! \n{}\n\n{}".format(i[0], i[1]))
-    time.sleep(1)
+        #bot.sendMessage로 대체
+        #bot.sendMessage(chat_id, "new ! \n{}\n\n{}".format(i[0], i[1]))
+        #print("new ! \n{}\n\n{}".format(i[0], i[1]))
+        time.sleep(1)
+
     except TypeError:
-    print("Error")
+        print("Error")
 
 sendBots()
