@@ -97,7 +97,7 @@ def daum_return_list(max_length):
 def naver_breaking_return_list(max_length):
 
     bs = returns("https://news.naver.com/main/list.nhn?mode=LSD&mid=sec&sid1=001")
-    td = bs.find("td", {"id":"container"})
+    td = bs.find("td", {"class":"content"})
 
     li = td.findAll("li")
     length = 0
@@ -107,6 +107,33 @@ def naver_breaking_return_list(max_length):
         except AttributeError:
             pass
 
+        base = i.find("a")
+
+        title = base.text
+        link = base['href']
+        if(link not in old_links):
+            if("코로나" in title or "봉쇄" in title or "확진" in title or "감염" in title):
+                if(length == max_length):
+                    return lists
+                else:
+                    lists.append([title, link])
+                    old_links.append(link)
+                    length+=1
+
+    if(len(lists) != 0):
+        return lists
+    else:
+        raise TypeError
+
+def naver_return_list(max_length):
+
+    bs = returns("https://news.naver.com/main/home.nhn")
+    td = bs.find("id", {"class":"container"})
+
+    li = td.findAll("li")
+    length = 0
+    for i in li:
+        
         base = i.find("a")
 
         title = base.text
