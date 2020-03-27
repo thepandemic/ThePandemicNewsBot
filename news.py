@@ -85,7 +85,7 @@ def daum_extract_links(old_links=[]):
 for i in range(10):
     naver_new_links = naver_extract_links(naver_old_links)
     naver_old_links += naver_new_links.copy()
-    naver_old_links = list(set(old_links))
+    naver_old_links = list(set(naver_old_links))
 
     naver_new_titles = naver_extract_links(naver_old_links)
     naver_old_titles += naver_new_titles.copy()
