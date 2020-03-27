@@ -6,7 +6,10 @@ import telegram
 
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
+daum_breaking_news_amount = 10
 daum_news_amount = 10
+
+naver_breaking_news_amount = 10
 naver_news_amount = 10
 
 lists = []
@@ -18,6 +21,42 @@ def returns(url):
     req = requests.get(url)
     bs = bs4.BeautifulSoup(req.content, "html.parser")
     return bs
+
+def daum_breaking_return_list(max_length):
+
+    x = len(keyword)
+
+    for j in range(x):
+        bs = returns("https://news.daum.net/")
+        td = bs.find("div", {"id":"kakaoContent"})
+        li = td.findAll("li")
+        length = 0
+
+        for i in strong:
+            try:
+                i.find("strong", {"class":"tit_thumb"}).decompose()
+            except AttributeError:
+                pass
+
+            base = i.find("a")
+
+            title = base.text
+            link = base['href']
+
+            if(link not in old_links):
+                if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
+                    if(length == max_length):
+                        return lists
+                    else:
+                        lists.append([title, link])
+                        old_links.append(link)
+                        length+=1
+                        #print(length)
+
+        if(len(lists) != 0):
+            return lists
+        else:
+            raise TypeError
 
 def daum_return_list(max_length):
 
@@ -55,7 +94,7 @@ def daum_return_list(max_length):
         else:
             raise TypeError
 
-def naver_return_list(max_length):
+def naver_breaking_return_list(max_length):
 
     bs = returns("https://news.naver.com/main/list.nhn?mode=LSD&mid=sec&sid1=001")
     td = bs.find("td", {"id":"container"})
@@ -89,11 +128,34 @@ def naver_return_list(max_length):
 
 def sendBots():
     try:
+        lists = daum_breaking_return_list(daum_news_amount)
+        print(lists)
+        for i in lists:
+            #bot.sendMessage로 대체
+            bot.sendMessage(CHAT_ID, "{}\n{}".format(i[0], i[1]))
+            print("{}\n{}".format(i[0], i[1]))
+            time.sleep(1)
+
+    except TypeError:
+        print("Error")
+
+    try:
         lists = daum_return_list(daum_news_amount)
         print(lists)
         for i in lists:
             #bot.sendMessage로 대체
             bot.sendMessage(CHAT_ID, "{}\n{}".format(i[0], i[1]))
+            print("{}\n{}".format(i[0], i[1]))
+            time.sleep(1)
+
+    except TypeError:
+        print("Error")
+
+    try:
+        lists = naver_breaking_return_list(naver_news_amount)
+        for i in lists:
+            #bot.sendMessage로 대체
+            bot.sendMessage(CHAT_ID, "{}\n\n{}".format(i[0], i[1]))
             print("{}\n{}".format(i[0], i[1]))
             time.sleep(1)
 
