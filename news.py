@@ -33,7 +33,7 @@ def naver_extract_links(old_links=[]):
     naver_new_links=[]
     for naver_link in naver_links:
         if naver_link not in naver_old_links:
-            naver_new_links.append(naver_link)
+           naver_new_links.append(naver_link)
 
     naver_titles = []
     for naver_news_title in naver_news_list[:10]:
@@ -43,7 +43,7 @@ def naver_extract_links(old_links=[]):
     naver_new_titles=[]
     for naver_title in naver_titles:
         if naver_title not in naver_old_links:
-            naver_new_titles.append(naver_title)
+           naver_new_titles.append(naver_title)
 
     return naver_new_links
     return naver_new_titles
@@ -66,17 +66,17 @@ def daum_extract_links(old_links=[]):
     daum_new_links=[]
     for daum_link in daum_links:
         if daum_link not in daum_old_links:
-            daum_new_links.append(daum_link)
+           daum_new_links.append(daum_link)
 
     daum_titles = []
     for daum_news_title in daum_news_list[:10]:
-       daum_title = daum_news_title['title']
+        daum_title = daum_news_title['title']
         daum_titles.append(daum_title)
 
     daum_new_titles=[]
     for daum_title in daum_titles:
         if daum_title not in daum_old_links:
-            daum_new_titles.append(daum_title)
+           daum_new_titles.append(daum_title)
     
     return daum_new_links
     return daum_new_titles
