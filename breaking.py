@@ -21,7 +21,7 @@ def returns(url):
 
 def daum_return_list(max_length):
 
-    for i in keyword:
+    for i in len(keyword):
         bs = returns("https://search.daum.net/search?w=news&sort=recency&q={keyword[i]}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
         td = bs.find("div", {"class":"coll_cont"})
         li = td.findAll("li")
