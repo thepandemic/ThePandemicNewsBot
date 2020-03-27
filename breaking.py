@@ -1,6 +1,6 @@
 from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
-from bs4
+import bs4
 import time
 import telegram
 
