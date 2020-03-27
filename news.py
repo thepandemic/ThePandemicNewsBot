@@ -91,7 +91,8 @@ for i in range(10):
     naver_old_titles += naver_new_titles.copy()
     naver_old_titles = list(set(naver_old_links))
 
-    news(naver_new_titles=[i],'\n\n',naver_new_links=[i])
+    naver_news = naver_new_titles=[i] + '\n\n' + naver_new_links=[i]
+    news(naver_news)
 
 for i in range(10):
     daum_new_links = daum_extract_links(daum_old_links)
@@ -101,8 +102,9 @@ for i in range(10):
     daum_new_titles = daum_extract_links(daum_old_links)
     daum_old_titles += daum_new_titles.copy()
     daum_old_titles = list(set(daum_old_links))
-
-    news(daum_new_titles=[i],'\n\n',daum_new_links=[i])
+    
+    daum_news = daum_new_titles=[i] + '\n\n' + daum_new_links=[i]
+    news(daum_news)
 """
 ===보낼 링크===
  ['https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=008&aid=0004349743', 'http://it.chosun.com/site/data/html_dir/2020/01/31/2020013103216.html', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=031&aid=0000523810', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=102&oid=001&aid=0011371561', 'http://www.fintechpost.co.kr/news/articleView.html?idxno=100097'] 
