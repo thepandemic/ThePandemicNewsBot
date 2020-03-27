@@ -1,6 +1,6 @@
 from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
-import bs4
+from bs4 import BeautifulSoup
 import time
 import telegram
 
@@ -70,8 +70,9 @@ def daum_return_list(max_length):
         bs = returns("https://search.daum.net/search?w=news&sort=recency&q={keyword[j]}&cluster=n&DA=STC&dc=STC&pg=1&r=1&p=1&rc=1&at=more&sd=&ed=&period=")
         ul = bs.find("ul", {"id":"newsResultUL"})
         li = ul.findAll("li")
-        div = li.findAll("div", {"class":"cont_inner"})
-        p = div.findAll("p", {"class":"desc"})
+        div = li.findAll("div", {"class":"wrap_cont"})
+        div2 = div.findAll("div", {"class":"cont_inner"})
+        p = div2.findAll("p", {"class":"desc"})
         length = 0
 
         for i in li:
