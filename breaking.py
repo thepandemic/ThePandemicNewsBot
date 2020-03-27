@@ -29,7 +29,7 @@ def return_list():
         title = base.text
         link = base['href']
         if(link not in old_links):
-            if("코로나" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
+            if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "속보" in title):
                 print(title, link)
                 lists.append([title, link])
                 old_links.append(link)
@@ -43,7 +43,7 @@ def sendBots():
     try:
         lists = return_list()
         for i in lists:
-            bot.sendMessage(CHAT_ID, "{}\n\n{}".format(i[0], i[1]))
+            bot.sendMessage(CHAT_ID, "{}\n{}".format(i[0], i[1]))
             #print("new ! \n{}\n\n{}".format(i[0], i[1]))
             time.sleep(1.5)
     except TypeError:
