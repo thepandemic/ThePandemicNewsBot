@@ -83,7 +83,7 @@ def daum_extract_links(old_links=[]):
 # 차후 이 부분을 메시지 전송 코드로 변경하고 매시간 동작하도록 설정
 # 새로운 링크가 없다면 빈 리스트 반환
 for i in range(10):
-    naver_new_links = naver_extract_links(old_links)
+    naver_new_links = naver_extract_links(naver_old_links)
     naver_old_links += naver_new_links.copy()
     naver_old_links = list(set(old_links))
 
