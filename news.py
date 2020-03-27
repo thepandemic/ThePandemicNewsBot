@@ -96,7 +96,7 @@ for i in range(10):
     news(naver_new_links[i])
 
 for i in range(10):
-    daum_new_links, daum_new_titles = daum_extract_links(daum_old_links)
+    daum_new_links = daum_extract_links(daum_old_links)
     daum_new_links += daum_new_links.copy()
     daum_new_links = list(set(daum_old_links))
 
