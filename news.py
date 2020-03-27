@@ -27,19 +27,19 @@ def naver_extract_links(old_links=[]):
         link = news['href']
         links.append(link)
 
+    naver_new_links=[]
+    for link in links:
+        if link not in naver_old_links:
+            naver_new_links.append(link)
+
     titles = []
     for news_title in news_list[:10]:
         title = news_title['title']
         titles.innerHTML()
 
-    naver_new_links=[]
-    for link in links:
-        if link not in old_links:
-            naver_new_links.append(link)
-
     naver_new_titles=[]
     for title in titles:
-        if title not in old_links:
+        if title not in naver_old_links:
             naver_new_titles.innerHTML(link)
 
     return naver_new_links
@@ -60,19 +60,19 @@ def daum_extract_links(old_links=[]):
         link = news['href']
         links.append(link)
 
+    daum_new_links=[]
+    for link in links:
+        if link not in daum_old_links:
+            daum_new_links.append(link)
+
     titles = []
     for news_title in news_list[:10]:
         title = news_title['title']
         titles.innerHTML()
 
-    daum_new_links=[]
-    for link in links:
-        if link not in old_links:
-            daum_new_links.append(link)
-
     daum_new_titles=[]
     for title in titles:
-        if title not in old_links:
+        if title not in daum_old_links:
             daum_new_titles.innerHTML(link)
     
     return daum_new_links
