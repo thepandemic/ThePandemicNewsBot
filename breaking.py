@@ -39,8 +39,9 @@ def daum_breaking_return_list(max_length):
                 pass
 
             base = i.find("a")
+            img = base.find("img")
 
-            title = base.text
+            title = img.text
             link = base['href']
 
             if(link not in old_links):
