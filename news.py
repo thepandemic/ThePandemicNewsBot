@@ -10,7 +10,10 @@ bot = telegram.Bot(token=TELEGRAM_TOKEN)
 search_word = '코로나'
 # 기존에 보냈던 링크를 담아둘 리스트
 naver_old_links = []
+naver_old_titles = []
+
 daum_old_links = []
+daum_old_title = []
 
 # 스크래핑 함수 
 def naver_extract_links(old_links=[]):
@@ -43,7 +46,7 @@ def naver_extract_links(old_links=[]):
             naver_new_titles.append(title)
 
     return naver_new_links
-    return naver_new_titles
+ #   return naver_new_titles
 
 # 스크래핑 함수 
 def daum_extract_links(old_links=[]):
@@ -67,7 +70,7 @@ def daum_extract_links(old_links=[]):
 
     titles = []
     for news_title in news_list[:10]:
-        title = news_title['title']
+       title = news_title['title']
         titles.append(title)
 
     daum_new_titles=[]
@@ -76,7 +79,7 @@ def daum_extract_links(old_links=[]):
             daum_new_titles.append(title)
     
     return daum_new_links
-    return daum_new_titles
+#    return daum_new_titles
 
 
 # 이전 링크를 매개변수로 받아서, 비교 후 새로운 링크만 출력
@@ -105,7 +108,7 @@ for i in range(10):
     
     daum_news = daum_new_titles[i] + '\n\n' + daum_new_links[i]
     news(daum_news)
-    
+
 """
 ===보낼 링크===
  ['https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=008&aid=0004349743', 'http://it.chosun.com/site/data/html_dir/2020/01/31/2020013103216.html', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=101&oid=031&aid=0000523810', 'https://m.news.naver.com/read.nhn?mode=LSD&mid=sec&sid1=102&oid=001&aid=0011371561', 'http://www.fintechpost.co.kr/news/articleView.html?idxno=100097'] 
