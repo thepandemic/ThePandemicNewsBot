@@ -30,7 +30,7 @@ def naver_extract_links(old_links=[]):
         naver_link = naver_news['href']
         naver_links.append(naver_link)
 
-    naver_new_links=[]
+    naver_new_links = []
     for naver_link in naver_links:
         if naver_link not in naver_old_links:
            naver_new_links.append(naver_link)
@@ -63,7 +63,7 @@ def daum_extract_links(old_links=[]):
         daum_link = daum_news['href']
         daum_links.append(daum_link)
 
-    daum_new_links=[]
+    daum_new_links = []
     for daum_link in daum_links:
         if daum_link not in daum_old_links:
            daum_new_links.append(daum_link)
@@ -96,10 +96,10 @@ for i in range(10):
 
 #    naver_news = naver_new_titles[i] + '\n\n' + naver_new_links[i]
     
-    if ("#" in naver_new_links[])
+    if ("#" in naver_new_links)
         pass
     else:
-        news(naver_new_links[i])
+        bot.sendMessage(CHAT_ID, naver_new_links[i])
 
 
 for i in range(10):
@@ -113,10 +113,10 @@ for i in range(10):
     
 #    daum_news = daum_new_titles[i] + '\n\n' + daum_new_links[i]
     
-    if ("#" in daum_new_links[])
+    if ("#" in daum_new_links)
         pass
     else:
-        news(daum_new_links[i])
+        bot.sendMessage(CHAT_ID, daum_new_links[i])
 
 
 """
