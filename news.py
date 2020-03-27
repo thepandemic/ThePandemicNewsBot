@@ -38,7 +38,7 @@ def extract_links(old_links=[]):
 # 새로운 링크가 없다면 빈 리스트 반환
 for i in range(3):
     new_links = extract_links(old_links)
-    news(new_links)
+    news(new_links[i])
     old_links += new_links.copy()
     old_links = list(set(old_links))
     
