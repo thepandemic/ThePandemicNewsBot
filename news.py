@@ -96,10 +96,7 @@ for i in range(10):
 
 #    naver_news = naver_new_titles[i] + '\n\n' + naver_new_links[i]
     
-    if (naver_new_links[i] == '#')
-        pass
-    else:
-        bot.sendMessage(CHAT_ID, naver_new_links[i])
+    bot.sendMessage(CHAT_ID, naver_new_links[i])
 
 
 for i in range(10):
@@ -113,10 +110,7 @@ for i in range(10):
     
 #    daum_news = daum_new_titles[i] + '\n\n' + daum_new_links[i]
     
-    if (daum_new_links[i] == '#')
-        pass
-    else:
-        bot.sendMessage(CHAT_ID, daum_new_links[i])
+    bot.sendMessage(CHAT_ID, daum_new_links[i])
 
 
 """
