@@ -12,7 +12,7 @@ def template(data):
   for i in range(0, data['count']):
     body.append([data['city'][i], data['prev_rise'][i], data['confirm'][i], data['die'][i], data['rate'][i], data['check'][i]])
   
-  return '<code>' + '\n'.join(print_table(body, ["지역", "증감", "확진", "사망", "발생", "검사"], 80, 6)) + '</code>'
+  return '\n'.join(print_table(body, ["지역", "증감", "확진", "사망", "발생", "검사"], 80, 6))
 
 BASE_URL = "http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=13&ncvContSeq=&contSeq=&board_id=&gubun="
 
@@ -47,5 +47,3 @@ print(data)
 
 helper = '''
 '''
-
-send(data + helper)
