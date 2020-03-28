@@ -1,12 +1,15 @@
-from config import TELEGRAM_TOKEN, CHAT_ID
+#from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
 from bs4 import BeautifulSoup
 import time
 import telegram
 import re
 
+TELEGRAM_TOKEN = "1014840884:AAHRl3QtKjOjTAz9BIgPV-4XWXA95Y5s3bE"
+CHAT_ID = "1146016071"
+
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
-delay = 60
+delay = 0
 
 daum_breaking_news_amount = 10
 daum_news_amount = 10
@@ -26,6 +29,8 @@ def returns(url):
     return bs
 
 def daum_breaking_return_list(max_length):
+    
+    lists=[]
 
     bs = returns("https://news.daum.net/")
     div = bs.find("div", {"id":"kakaoContent"})
@@ -61,8 +66,6 @@ def daum_breaking_return_list(max_length):
                     old_links.append(link)
                     length+=1
                     #print(length)
-            else:
-                print("새로운 뉴스가 없습니다.")
 
     if(len(lists) != 0):
         return lists
@@ -70,6 +73,8 @@ def daum_breaking_return_list(max_length):
         raise TypeError
 
 def daum_return_list(max_length):
+    
+    lists=[]
 
     for j in range(len(keyword)):
 
@@ -115,6 +120,8 @@ def daum_return_list(max_length):
             raise TypeError
 
 def naver_breaking_return_list(max_length):
+    
+    lists=[]
 
     bs = returns("https://news.naver.com/main/home.nhn")
     td = bs.find("div", {"id":"container"})
@@ -128,8 +135,8 @@ def naver_breaking_return_list(max_length):
             pass
 
         base = i.find("a")
-
         title = base.text
+
         link = base['href']
 
         if(link not in old_links):
@@ -149,6 +156,8 @@ def naver_breaking_return_list(max_length):
 
 
 def naver_return_list(max_length):
+    
+    lists=[]
 
     for j in range(len(keyword)):
 
@@ -159,12 +168,15 @@ def naver_return_list(max_length):
         length = 0
 
         for i in li:
-
-            base = i.find("a")
+            base = i.find("dl").find("a")
             title = base.text
-            base2 = i.find("dd")
-            desc = base2.text
 
+            try:
+                i.find("dd", {"class":"txt_inline"}).decompose()
+            except AttributeError:
+                pass
+
+            desc = i.find("dd").text
             link = base['href']
 
             if(link not in old_links):
@@ -198,14 +210,14 @@ def message(i):
     title = i[0].replace("\r", "")
     title = i[0].replace("\n", "")
     title = i[0].replace("\t", "")
-    bot.sendMessage(CHAT_ID, "{}\n\n{}".format(title, i[1]))
+    bot.sendMessage(CHAT_ID, "{}\n{}".format(title, i[1]))
     print("{}\n{}".format(i[0], i[1]))
     time.sleep(delay)
 
 def sendBots():
     try:
         print("Start 1 -----------------------------------------------------------------------------------------------------")
-        
+
         lists = daum_breaking_return_list(daum_breaking_news_amount)
         for i in lists:
             #bot.sendMessage로 대체
@@ -218,7 +230,7 @@ def sendBots():
 
     try:
         print("Start 2 -----------------------------------------------------------------------------------------------------")
-        
+
         lists = daum_return_list(daum_news_amount)
         for i in lists:
             #bot.sendMessage로 대체
@@ -231,6 +243,7 @@ def sendBots():
 
     try:
         print("Start 3 -----------------------------------------------------------------------------------------------------")
+
         lists = naver_breaking_return_list(naver_breaking_news_amount)
 #        print(lists)
         for i in lists:
@@ -244,13 +257,12 @@ def sendBots():
 
     try:
         print("Start 4 -----------------------------------------------------------------------------------------------------")
-        
+
         lists = naver_return_list(naver_news_amount)
 #        print(lists)
         for i in lists:
             #bot.sendMessage로 대체
             message(i)
-            time.sleep(delay)
 
     except TypeError:
         print("Error 4")
