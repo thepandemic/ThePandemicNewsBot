@@ -1,4 +1,4 @@
-#from config import TELEGRAM_TOKEN, CHAT_ID
+from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -13,12 +13,7 @@ from app import helper
 from noti import send
 import os
 
-TELEGRAM_TOKEN = "1014840884:AAHRl3QtKjOjTAz9BIgPV-4XWXA95Y5s3bE"
-CHAT_ID = "1146016071"
-
-my_token = TELEGRAM_TOKEN
-
-updater = Updater(my_token)
+updater = Updater(TELEGRAM_TOKEN)
 
 def build_menu(buttons, n_cols, header_buttons=None, footer_buttons=None):
     menu = [buttons[i:i + n_cols] for i in range(0, len(buttons), n_cols)]
