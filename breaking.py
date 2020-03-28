@@ -8,11 +8,11 @@ import re
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
 delay = 300
 
-daum_breaking_news_amount = 10
-daum_news_amount = 10
+daum_breaking_news_amount = 5
+daum_news_amount = 5
 
-naver_breaking_news_amount = 10
-naver_news_amount = 10
+naver_breaking_news_amount = 5
+naver_news_amount = 5
 
 lists = []
 old_links = []
