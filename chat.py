@@ -88,21 +88,21 @@ def callback_get(bot, update):
                               message_id=update.callback_query.message.message_id)
 
         if "생존일기" in data_selected:
-            button_list = build_button(diary_writter)
-            show_markup = InlineKeyboardMarkup(build_menu(button_list, len(button_list) - 1))
-            bot.edit_message_text(text="읽고 싶은 일지의 작성자를 선택해주세요.",
+            #button_list = build_button(diary_writter)
+            #show_markup = InlineKeyboardMarkup(build_menu(button_list, len(button_list) - 1))
+            bot.edit_message_text(text="생존일기 목록입니다.\n\nhttps://m.dcinside.com/board/thepandemic?headid=80",
                                   chat_id=update.callback_query.message.chat_id,
                                   message_id=update.callback_query.message.message_id,
                                   reply_markup=show_markup)
 
-    for j in diary_writter:
-        if j == data_selected:
-            if j == "부산 판붕이":
-                writter = "생존일기"
-            bot.edit_message_text(text=j+"의 생존일기입니다.\n\n"+f'https://gall.dcinside.com/mgallery/board/lists/?id=thepandemic&sort_type=N&search_head={head}&s_type=search_name&s_keyword={writter}&page=1'.format(update.callback_query.data),
-                              chat_id=update.callback_query.message.chat_id,
-                              message_id=update.callback_query.message.message_id)
-            return
+    #for j in diary_writter:
+    #    if j == data_selected:
+    #        if j == "부산 판붕이":
+    #            writter = "생존일기"
+    #        bot.edit_message_text(text=j+"의 생존일기입니다.\n\n"+f'https://gall.dcinside.com/mgallery/board/lists/?id=thepandemic&sort_type=N&search_head={head}&s_type=search_name&s_keyword={writter}&page=1'.format(update.callback_query.data),
+    #                          chat_id=update.callback_query.message.chat_id,
+    #                          message_id=update.callback_query.message.message_id)
+    #        return
 
 main_handler = CommandHandler('start', main_command)
 updater.dispatcher.add_handler(main_handler)
