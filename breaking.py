@@ -1,15 +1,12 @@
-#from config import TELEGRAM_TOKEN, CHAT_ID
+from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
 from bs4 import BeautifulSoup
 import time
 import telegram
 import re
 
-TELEGRAM_TOKEN = "1014840884:AAHRl3QtKjOjTAz9BIgPV-4XWXA95Y5s3bE"
-CHAT_ID = "1146016071"
-
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
-delay = 0
+delay = 300
 
 daum_breaking_news_amount = 10
 daum_news_amount = 10
