@@ -1,6 +1,5 @@
 from config import TELEGRAM_TOKEN, CHAT_ID
 import requests
-import bs4
 from bs4 import BeautifulSoup
 import time
 import telegram
