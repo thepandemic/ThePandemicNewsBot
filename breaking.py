@@ -224,6 +224,7 @@ def sendBots():
         print("Start 1 -----------------------------------------------------------------------------------------------------")
 
         lists = daum_breaking_return_list(daum_breaking_news_amount)
+#       print(lists)
         for i in lists:
             #bot.sendMessage로 대체
             message(i)
@@ -237,6 +238,7 @@ def sendBots():
         print("Start 2 -----------------------------------------------------------------------------------------------------")
 
         lists = daum_return_list(daum_news_amount)
+#       print(lists)
         for i in lists:
             #bot.sendMessage로 대체
             message(i)
@@ -250,7 +252,7 @@ def sendBots():
         print("Start 3 -----------------------------------------------------------------------------------------------------")
 
         lists = naver_breaking_return_list(naver_breaking_news_amount)
-#        print(lists)
+#       print(lists)
         for i in lists:
             #bot.sendMessage로 대체
             message(i)
@@ -264,8 +266,8 @@ def sendBots():
         print("Start 4 -----------------------------------------------------------------------------------------------------")
 
         lists = naver_return_list(naver_news_amount)
-#        print(lists)
-         for i in lists:
+#       print(lists)
+        for i in lists:
             #bot.sendMessage로 대체
             message(i)
 
