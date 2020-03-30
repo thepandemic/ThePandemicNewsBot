@@ -6,7 +6,7 @@ import telegram
 import re
 
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
-delay = 300
+delay = 3000
 
 daum_breaking_news_amount = 5
 daum_news_amount = 5
@@ -257,7 +257,7 @@ def sendBots():
 
         lists = naver_return_list(naver_news_amount)
 #        print(lists)
-        for i in lists:
+         for i in lists:
             #bot.sendMessage로 대체
             message(i)
 
