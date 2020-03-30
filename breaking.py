@@ -42,12 +42,14 @@ def daum_breaking_return_list(max_length):
             base = i.find("a")
             link = base['href']
             title = base.text
+            title.replace('\n', '').replace('1 위', '').replace('2 위', '').replace('3 위', '').replace('4 위', '').replace('5 위', '')
+            
         except AttributeError:
             base = i.find("a")
             link = base['href']
             title = base.text
-            pass
-
+            title.replace('\n', '').replace('1 위', '').replace('2 위', '').replace('3 위', '').replace('4 위', '').replace('5 위', '')
+            
         try:
             title = base.text
         except AttributeError:
@@ -85,6 +87,8 @@ def daum_return_list(max_length):
 
             base = i.find("a")
             title = base.text
+            title.replace('\n', '').replace('1 위', '').replace('2 위', '').replace('3 위', '').replace('4 위', '').replace('5 위', '')
+            
             desc = i.text
 
             link = base['href']
@@ -133,6 +137,7 @@ def naver_breaking_return_list(max_length):
 
         base = i.find("a")
         title = base.text
+        title.replace('\n', '').replace('1 위', '').replace('2 위', '').replace('3 위', '').replace('4 위', '').replace('5 위', '')
 
         link = base['href']
 
@@ -167,7 +172,8 @@ def naver_return_list(max_length):
         for i in li:
             base = i.find("dl").find("a")
             title = base.text
-
+            title.replace('\n', '').replace('1 위', '').replace('2 위', '').replace('3 위', '').replace('4 위', '').replace('5 위', '')
+            
             try:
                 i.find("dd", {"class":"txt_inline"}).decompose()
             except AttributeError:
@@ -175,7 +181,9 @@ def naver_return_list(max_length):
 
             desc = i.find("dd").text
             link = base['href']
-
+            if link.startswith("/") == True:
+                link
+            
             if(link not in old_links):
                 if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "전염" in title or "속보" in title):
                     if(length == max_length):
