@@ -8,11 +8,11 @@ import re
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
 delay = 3000
 
-daum_breaking_news_amount = 5
-daum_news_amount = 5
+daum_breaking_news_amount = 10
+daum_news_amount = 10
 
-naver_breaking_news_amount = 5
-naver_news_amount = 5
+naver_breaking_news_amount = 10
+naver_news_amount = 10
 
 lists = []
 old_links = []
@@ -140,7 +140,9 @@ def naver_breaking_return_list(max_length):
         title.replace('\n', '').replace('1 위', '').replace('2 위', '').replace('3 위', '').replace('4 위', '').replace('5 위', '')
 
         link = base['href']
-
+        if link.startswith("/") == True:
+            link = "https://news.naver.com"+link
+            
         if(link not in old_links):
             if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "전염" in title or "속보" in title):
                 if(length == max_length):
@@ -181,8 +183,6 @@ def naver_return_list(max_length):
 
             desc = i.find("dd").text
             link = base['href']
-            if link.startswith("/") == True:
-                link
             
             if(link not in old_links):
                 if("코로나" in title or "코비드" in title or "봉쇄" in title or "확진" in title or "감염" in title or "전염" in title or "속보" in title):
