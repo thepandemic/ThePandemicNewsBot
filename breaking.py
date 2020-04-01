@@ -223,7 +223,7 @@ def sendBots():
     try:
         print("Start 1 -----------------------------------------------------------------------------------------------------")
 
-        lists = daum_breaking_return_list(daum_breaking_news_amount)
+        lists = naver_breaking_return_list(naver_breaking_news_amount)
 #       print(lists)
         for i in lists:
             #bot.sendMessage로 대체
@@ -237,7 +237,7 @@ def sendBots():
     try:
         print("Start 2 -----------------------------------------------------------------------------------------------------")
 
-        lists = daum_return_list(daum_news_amount)
+        lists = naver_return_list(naver_news_amount)
 #       print(lists)
         for i in lists:
             #bot.sendMessage로 대체
@@ -247,11 +247,11 @@ def sendBots():
         print("Error 2")
 
     print("End 2 -----------------------------------------------------------------------------------------------------")
-
+    
     try:
         print("Start 3 -----------------------------------------------------------------------------------------------------")
 
-        lists = naver_breaking_return_list(naver_breaking_news_amount)
+        lists = daum_breaking_return_list(daum_breaking_news_amount)
 #       print(lists)
         for i in lists:
             #bot.sendMessage로 대체
@@ -265,7 +265,7 @@ def sendBots():
     try:
         print("Start 4 -----------------------------------------------------------------------------------------------------")
 
-        lists = naver_return_list(naver_news_amount)
+        lists = daum_return_list(daum_news_amount)
 #       print(lists)
         for i in lists:
             #bot.sendMessage로 대체
@@ -275,5 +275,6 @@ def sendBots():
         print("Error 4")
 
     print("End 4 -----------------------------------------------------------------------------------------------------")
+
 
 sendBots()
