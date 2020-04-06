@@ -6,7 +6,7 @@ import telegram
 import re
 
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
-delay = 3000
+delay = 7200
 
 daum_breaking_news_amount = 10
 daum_news_amount = 10
